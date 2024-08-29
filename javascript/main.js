@@ -76,6 +76,8 @@ productos.forEach ((producto) => {
     contenedorProductos.append(div);
 });
 
+actualizarCarrito();
+
 const agregarAlCarrito = (producto) => {
     let productoEnCarrito = carrito.find((item) => item.id === producto.id);
     

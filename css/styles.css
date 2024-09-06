@@ -282,6 +282,10 @@ img:hover {
   flex-direction: row; */
 }
 
+.titulo:hover {
+  color:black;
+}
+
 .carrito {
   width: 100%;
 }

@@ -1,54 +1,8 @@
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-const productos = [
-    {
-        id:"budin-limón",
-        titulo: "Budin de limón",
-        precio: 6000,
-        img: "./assets/budinlimon.jpg",
-    },
-    {
-        id:"budin-marmolado",
-        titulo: "Budin marmolado",
-        precio: 6000,
-        img: "./assets/budinmarmolado.jpg",
-    },
-    {
-        id:"carrotcake",
-        titulo: "Carrotcake",
-        precio: 30000,
-        img: "./assets/carrotcake.jpg",
-    },
-    {
-        id:"selvanegra",
-        titulo: "Selva negra",
-        precio: 30000,
-        img: "./assets/selvanegra.jpg",
-    },
-    {
-        id:"crumble",
-        titulo: "Crumble de manzanas",
-        precio: 20000,
-        img: "./assets/crumble.jpg",
-    },
-    {
-        id:"lemonPie",
-        titulo: "Lemon pie",
-        precio: 20000,
-        img: "./assets/lemonpie.jpg",
-    },{
-        id:"lunettes",
-        titulo: "Galletas lunettes",
-        precio: 8000,
-        img: "./assets/lunettes.jpg",
-    },
-    {
-        id:"cookies",
-        titulo: "Galletas con chips",
-        precio: 8000,
-        img: "./assets/galletachips.jpg",
-    },
-];
+fetch("../data/productos.json")
+.then((resp) => resp.json())
+.then((data) => {mostrarProductos(data)});
 
 const contenedorProductos = document.querySelector("#productos");
 const carritoVacio = document.querySelector("#carrito-vacio");
@@ -56,25 +10,27 @@ const carritoProductos = document.querySelector("#carrito-productos");
 const carritoTotal = document.querySelector("#carrito-total");
 const vaciarCarrito = document.querySelector("#vaciar-carrito");
 
-productos.forEach ((producto) => {
-    let div = document.createElement("div");
-    div.classList.add("producto");
-    div.innerHTML = `
-        <img class="producto-img" src="${producto.img}" alt="">
-        <h3>${producto.titulo}</h3>
-        <p>$${producto.precio}</p>
-    `;
+function mostrarProductos(productos) {
+    productos.forEach ((producto) => {
+        let div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+            <img class="producto-img" src="${producto.img}" alt="">
+            <h3>${producto.titulo}</h3>
+            <p>$${producto.precio}</p>
+        `;
 
-    let button = document.createElement("button");
-    button.classList.add("producto-btn");
-    button.innerText = "Agregar al carrito";
-    button.addEventListener("click", () => {
-        agregarAlCarrito(producto);
-    })
+        let button = document.createElement("button");
+        button.classList.add("producto-btn");
+        button.innerText = "Agregar al carrito";
+        button.addEventListener("click", () => {
+            agregarAlCarrito(producto);
+        })
 
-    div.append(button);
-    contenedorProductos.append(div);
-});
+        div.append(button);
+        contenedorProductos.append(div);
+    });
+}
 
 actualizarCarrito();
 
@@ -87,6 +43,22 @@ const agregarAlCarrito = (producto) => {
         carrito.push ({...producto, cantidad: 1});
     }
     actualizarCarrito();
+
+    Toastify({
+        text: "Producto agregado",
+        avatar: producto.img,
+        duration: 3000,
+        destination: "../carrito.html",
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "rgb(81, 61, 112)",
+        },
+        onClick: function(){}
+      }).showToast();
 }
 
 function actualizarCarrito() {
@@ -162,6 +134,17 @@ function actualizarTotalCarrito() {
 }
 
 vaciarCarrito.addEventListener("click", () => {
-    carrito.length = 0;
-    actualizarCarrito();
+    Swal.fire({
+        title: "Seguro querés vaciar el carrito?",
+        icon: "question",
+        showDenyButton: true,
+        denyButtonText: "No",
+        confirmButtonText: "Sí"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito.length = 0;
+            actualizarCarrito();
+        }
+    })
+    
 });

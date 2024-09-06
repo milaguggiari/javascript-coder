@@ -8,7 +8,6 @@
     <meta name="keywords" content="pastelería artesanal, tortas, budines, productos dulces, galletas">
     <title>Productos</title>
     <link rel="icon" href="../assets/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Raleway:ital,wght@0,100..900;1,100..900&family=Truculenta:opsz,wght@12..72,100..900&display=swap" rel="stylesheet">
@@ -31,15 +30,6 @@
                     <h2>La pastelería<h2>
                 </div>
             </div>
-            <div class="carritoBoton">
-                <div class="boton">
-                    <a href="./carrito.html" class="">Carro de compras <ion-icon name="cart-outline"></ion-icon></a>
-                </div>
-                <div class="cuenta">    
-                    <a href="" class="crearcuenta">Crear cuenta |</a>
-                    <a href="" class="iniciosesion">Inicio sesión</a>
-                </div>
-            </div>
         </div>
         <div class="menu">
             <nav class="navbar navbar-expand-lg navinicio">
@@ -50,19 +40,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="../index.html">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./autor.html">Autor</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Productos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./preguntas.html">Preguntas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./contacto.html">Contacto</a>
+                                <a class="nav-link" href="./index.html">Productos</a>
                             </li>
                         </ul>
                         <form class="d-flex" role="search">
@@ -76,42 +54,8 @@
     </header>
 
     <main class="mainProductos">
-        <div class="seleccion"> 
-            <section class="ordenarPor">
-                <h3>Ordenar por</h3>
-                <form>
-                    <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1">Menor precio</option>
-                            <option value="2">Mayor precio</option>
-                            <option value="3">Destacados</option>
-                            <option value="3">Más vistos</option>
-                          </select>
-                    </div>
-                </form>
-            </section>
-            <section class="categoriasProd">
-                <h3>Catergorías</h3>
-                <form>
-                    <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1">Menor precio</option>
-                            <option value="2">Mayor precio</option>
-                            <option value="3">Destacados</option>
-                            <option value="3">Más vistos</option>
-                          </select>
-                    </div>
-                </form>
-            </section>
-        </div>
-        <section class="articulosProd">
-            <div class="productos" id="productos">
-            </div>
-        </section>
         <section class="seccionCarrito">
-            <a href="./carrito.html">
-                <h3 class="titulo">Carrito</h3>
-            </a>
+            <h3 class="titulo">Carrito</h3>
             <div class="carrito">
                 <div id="carrito-vacio" class="">
                     <h4>Tu carrito está vacío</h4>
@@ -167,7 +111,6 @@
         AOS.init();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./javascript/main.js"></script>
 </body>
 
